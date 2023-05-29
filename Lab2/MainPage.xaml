@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab_2.MainPage"
+             xmlns:viewmodels="clr-namespace:Lab_2.ViewModels"
+             xmlns:controls="clr-namespace:Lab_2.Controls">
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout Padding="30" Spacing="20">
+            <ScrollView Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Padding="30">
+                <Image Source="bee.jpg" HeightRequest="280" />
+                <Image Source="ladybyg.jpg" HeightRequest="280" />
+                <Image Source="butter.jpg" HeightRequest="280" />
+            </StackLayout>
+            </ScrollView>
+            <StackLayout FlexLayout.AlignSelf="Center">
+                <Label x:Name="DateTimeLabel" Text="{Binding CurrentDateTime}" FontSize="24" Margin="20" />
+                <Button Text="Update Time" Command="{Binding UpdateTimeCommand}" MaximumWidthRequest="150" Margin="20" BackgroundColor="#696" TextColor="#fff" />
+            </StackLayout>
+            <Label Text="{Binding CurrentDeviceinfo}" FontSize="24" />
+            <StackLayout FlexLayout.AlignSelf="Center" Orientation="Horizontal">
+                <Label Text="My ToDos:" FontSize="28" Margin="20" />
+                <Button Text="Fetch ToDo" Command="{Binding FetchDataCommand}" Margin="20" MaximumWidthRequest="150" BackgroundColor="#696" TextColor="#fff" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding ToDoData.userId}">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Title: " />
+                            <Span Text="{Binding ToDoData.title}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="User: " />
+                            <Span Text="{Binding ToDoData.userId}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Completed: " />
+                            <Span Text="{Binding ToDoData.completed}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <FlexLayout Wrap="Wrap">
+                <Label Text="Saved ToDos:" FontSize="28" Margin="20" />
+                <Button Text="Save Todo to DB" Command="{Binding SaveDataCommand}" Margin="20" MaximumWidthRequest="150" BackgroundColor="#696" TextColor="#fff" />
+                <Button Text="Get Todo from DB" Command="{Binding GetDataCommand}" MaximumWidthRequest="150" Margin="20" BackgroundColor="#696" TextColor="#fff" />
+            </FlexLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="DB status: " />
+                            <Span Text="{Binding DBStatus}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>                
+            <StackLayout IsVisible="{Binding DbItem.userId}">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Title: " />
+                            <Span Text="{Binding DbItem.title}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="User: " />
+                            <Span Text="{Binding DbItem.userId}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Completed: " />
+                            <Span Text="{Binding DbItem.completed}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
